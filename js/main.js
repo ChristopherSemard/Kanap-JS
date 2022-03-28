@@ -6,7 +6,6 @@ fetch("http://localhost:3000/api/products")
     }
     })
     .then(function (data) {
-        console.log(data)
         productBlocks(data);
     })
     .catch(function (error) {});
@@ -33,7 +32,6 @@ function productBlocks(data){
         for(color of product.colors ){
             newColor = color.replace('/', '');
             colorsBlocks += `<div class="color ${newColor}"></div>`
-            console.log(colorsBlocks)
         }
 
         productBlocksDiv.innerHTML += `

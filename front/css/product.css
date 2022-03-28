@@ -1,10 +1,37 @@
-.product-page{
-    height: 500px;
+#product-page{
     width: 100%;
     background-color: var(--main-color);
     color: whitesmoke;
-    min-height: 400px;
-    padding : 85px 20px 50px 20px;
+    min-height: 350px;
+    padding : 20px 20px 20px 20px;
+    display: flex;
     
-    
+}
+
+#product-page article img{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+#product-page article div{
+    width: 100%;
+}
+
+
+#product-page article h2{
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+#product-page article p{
+    height: 100px;
+}
+
+#product-page article .price{
+    height: auto;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: right;
 }
