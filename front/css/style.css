@@ -16,9 +16,12 @@
 
 body{
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 header{
+    width: 100%;
     margin-bottom: -10px;;
 }
 
@@ -77,12 +80,12 @@ ul{
 }
 
 
-a{
+nav a{
     text-decoration: none;
     color: var(--text-color);
     font-size: 1.5em;
 }
-a:hover{
+nav a:hover{
     font-weight: bold;
 }
 
@@ -90,13 +93,6 @@ a:hover{
     height: 550px;
     width: 100%;
     object-fit: cover;
-}
-
-.products{
-    background-color: var(--main-color);
-    color: whitesmoke;
-    min-height: 400px;
-    padding : 85px 20px 50px 20px;
 }
 
 #titles{
@@ -153,28 +149,121 @@ footer{
     padding: 0 20px;
 }
 
+.products{
+    width: 100%;
+    background-color: var(--main-color);
+    color: whitesmoke;
+    min-height: 400px;
+    padding : 85px 20px 50px 20px;
+}
+
+
+
 #products-list{
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 #products-list a {
-    width: 75%;
-    height: 300px;
-    margin-bottom: 50px;
+    width: 85%;
+    margin: 30px;
+    cursor: pointer;
 }
 
 #products-list article {
-    width: 100%;
-    height: 100%;
-    padding-top: 20px;
+    padding: 20px ;
+    height: 350px;
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--footer-secondary-color) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: whitesmoke; 
 }
 
 #products-list article:hover {
-    background: var(--secondary-color-lighter);
+    background: var(--secondary-color-lighter);   
 }
+
+#products-list article img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+#products-list article h2{
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+#products-list article p{
+    font-size: 0.8em;   
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+#products-list article .price{
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.colorBlocks{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.color{
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+    border: whitesmoke 2px solid;
+}
+.Blue{
+    background-color: blue;
+}
+.White{
+    background-color: white;
+}
+.Black{
+    background-color: black;
+}
+.Red{
+    background-color: red;
+}
+.Grey{
+    background-color: grey;
+}
+.Pink{
+    background-color: pink;
+}
+.Green{
+    background-color: green;
+}
+.Silver{
+    background-color: silver;
+}
+.Brown{
+    background-color: brown;
+}
+.Yellow{
+    background-color: yellow;
+}
+.Navy{
+    background-color: navy;
+}
+.Purple{
+    background-color: purple;
+}
+.BlackYellow{
+    background: linear-gradient(135deg, rgb(0, 0, 0) 50%, rgb(255, 208, 0) 50%);
+}.BlackRed{
+    background: linear-gradient(135deg, rgb(0, 0, 0) 50%, rgb(255, 0, 0) 50%);
+}
+
 
 
 @media screen  and (min-width: 768px){
@@ -268,6 +357,7 @@ footer{
     }
 
     footer{
+        width: 100%;
         height: 300px;
         color: var(--footer-text-color);
     }
