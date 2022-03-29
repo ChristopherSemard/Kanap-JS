@@ -1,3 +1,14 @@
+:root{
+    --main-color: #e9a003;
+    --secondary-color: #2c3e50;
+    --secondary-color-lighter:rgb(66, 88, 110)0;
+    --text-color: #3d4c68;
+    --footer-text-color: #a6b0b3;
+    --footer-main-color: #3d424f;
+    --footer-secondary-color: #2d2f3e;
+    --font-main : Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 #product-page{
     width: 100%;
     background-color: var(--main-color);
@@ -5,7 +16,12 @@
     min-height: 350px;
     padding : 20px 20px 20px 20px;
     display: flex;
+    flex-wrap: wrap;
     
+}
+
+#product-page article {
+    margin-bottom: 20px;
 }
 
 #product-page article img{
@@ -15,23 +31,132 @@
     margin-bottom: 10px;
 }
 
-#product-page article div{
-    width: 100%;
-}
-
 
 #product-page article h2{
     font-size: 2em;
     margin-bottom: 10px;
 }
 
-#product-page article p{
-    height: 100px;
-}
 
 #product-page article .price{
     height: auto;
     font-size: 2em;
     font-weight: bold;
     text-align: right;
+}
+
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.colorBlocks{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 55px;
+}
+
+.color{
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
+
+.active{
+    height: 27px;
+    width: 27px;
+    border: var(--secondary-color) 4px solid;
+}
+
+#quantity-selector{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px 0px;
+    
+}
+
+#moins, #plus{
+    width: 20px;
+    display: inline-block;
+    padding: 7px 10px 8px;
+    text-align: center;
+    background-color: #ffffff;
+    cursor:pointer;
+    color: black;
+}
+
+#moins:hover, #plus:hover{
+    background: #eeeeee; 
+}
+
+
+#quantity{
+    width: 50px;
+    text-align: center;
+    border: none;
+    padding: 7px 10px 8px;
+    border-right: 2px solid rgba(0,0,0,0.1);
+    border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+
+#send{
+    border: none;
+    margin-top: 5px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    align-self: flex-end;
+    
+}
+
+.price{
+    margin-top: 20px;
+}
+
+
+@media screen  and (min-width: 768px){
+    
+    #product-page article img{
+        height: 400px;
+    }
+    
+
+    #products-list a {
+        width: 40%;
+    }
+
+    #product-page{
+        padding : 50px 100px;
+        
+    }
+
+}
+
+@media screen  and (min-width: 992px){
+    
+    #product-page article img{
+        height: 500px;
+    }
+    
+
+    #products-list a {
+        width: 40%;
+    }
+
+    #product-page{
+        padding : 50px 20%;
+    }
+
+    article{
+        width: 100%;
+    }
+
 }
