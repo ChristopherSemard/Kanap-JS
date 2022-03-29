@@ -30,7 +30,7 @@ function productBlocks(data){
         
         let colorsBlocks = ""
         for(color of product.colors ){
-            newColor = color.replace('/', '');
+            newColor = color.replace('/', '-');
             colorsBlocks += `<div class="color ${newColor}"></div>`
         }
 

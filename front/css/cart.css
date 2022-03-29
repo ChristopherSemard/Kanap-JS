@@ -1,0 +1,31 @@
+article{
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#product-description{
+    width: 100%;
+}
+#product-price{
+    width: 100%;
+}
+#product-quantity{
+    width: 100%;
+}
+
+
+#delete{
+    width: 20px;
+    display: inline-block;
+    padding: 7px 10px 8px;
+    text-align: center;
+    background-color: #c00000;
+    cursor:pointer;
+    color: rgb(255, 255, 255);
+}
+
+#moins:hover, #plus:hover{
+    background: #eeeeee; 
+}

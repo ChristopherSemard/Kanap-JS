@@ -54,9 +54,9 @@ form{
 
 .colorBlocks{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    height: 55px;
 }
 
 .color{
@@ -121,6 +121,27 @@ form{
     margin-top: 20px;
 }
 
+#alert-color, #alert-quantity{
+    display: none;
+    font-weight: bold;
+    background-color: red;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+#add-cart{
+    display: none;
+    font-weight: bold;
+    color: white;
+    width: calc(100%-5px);
+    background-color: green;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
 
 @media screen  and (min-width: 768px){
     
@@ -138,6 +159,14 @@ form{
         
     }
 
+    #alert-color, #alert-quantity{
+        display: none;
+        font-weight: bold;
+        background-color: red;
+        padding: 10px;
+        margin-left: 20px;
+        border-radius: 5px;
+    }
 }
 
 @media screen  and (min-width: 992px){
@@ -159,4 +188,5 @@ form{
         width: 100%;
     }
 
+    
 }
