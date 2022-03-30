@@ -1,4 +1,8 @@
 
+.products{
+    padding: 0 20%;
+}
+
 
 
 #products-list article{
@@ -16,6 +20,7 @@ article img{
     display: none;
 
 }
+
 
 #product-description{
     width: 70%;
@@ -100,7 +105,6 @@ form h2{
 }
 form input{
     margin-bottom: 10px; 
-    border: rgba(0,0,0,0.4) 1px ;
     padding: 5px;
 }
 form input:invalid{
@@ -121,4 +125,35 @@ form label{
     display: none;
     text-align: center;
     font-size: 1.5em;
+}
+
+@media screen and (min-width: 768px) {
+    
+}
+
+@media screen and (min-width: 992px) {
+    
+
+    #products-list article  {
+        justify-content: space-between;
+    }
+
+    #products-list article img {
+        display: block;
+        width: 100px;
+        height: 100px;
+    }
+    
+    #product-description{
+        width: 50%;
+        margin-bottom: 10px;
+    }
+    #product-price{
+        width: 15%;
+        margin-bottom: 10px;
+    }
+
+    form{
+        margin-bottom: 50px;
+    }
 }

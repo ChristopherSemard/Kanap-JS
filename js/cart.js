@@ -196,18 +196,28 @@ function createOrder(contact){
     let orderObject = {contact, products};
     console.log(orderObject);
     // Envoi de la commande
-    let order = fetch("http://localhost:3000/api/products/order", {
+    let order =  fetch("http://localhost:3000/api/products/order", {
         method: "POST",
         body: JSON.stringify(orderObject),
         headers: {
             Accept : 'application/json',
             'Content-Type' : 'application/json',
-        },
-        
+        }, 
     })
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        }
+        })
+    .then(function (data) {
+            console.log(data)
+            localStorage.setItem("order", JSON.stringify(data.orderId));
 
+    })
+    .catch(function (error) {});
 
+    window.location.href = "confirmation.html";
+    
 
-    console.log(order);
 
 }
