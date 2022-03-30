@@ -35,7 +35,7 @@ function productBlocks(data){
         }
 
         productBlocksDiv.innerHTML += `
-        <a href="./product.html?id=${product._id}">
+        <a href="./front/html/product.html?id=${product._id}">
             <article>
                 <img src="${product.imageUrl}" alt="${product.altTxt}">
                 <h2>${product.name}</h2>

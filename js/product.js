@@ -2,17 +2,6 @@ let url = new URL(document.location.href);
 let productId = url.searchParams.get('id')
 let productData
 
-class Products {
-    constructor(id, name, imageUrl, description, altTxt, price, colors){
-    this.id = id;
-    this.name = name; 
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.altTxt = altTxt;
-    this.price = price;
-    this.colors = colors;
-    }
-}
 
 
 // Récupérer le produit via l'API

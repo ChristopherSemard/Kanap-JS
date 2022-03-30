@@ -1,13 +1,3 @@
-:root{
-    --main-color: #e9a003;
-    --secondary-color: #2c3e50;
-    --secondary-color-lighter:rgb(66, 88, 110)0;
-    --text-color: #3d4c68;
-    --footer-text-color: #a6b0b3;
-    --footer-main-color: #3d424f;
-    --footer-secondary-color: #2d2f3e;
-    --font-main : Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
 
 #product-page{
     width: 100%;

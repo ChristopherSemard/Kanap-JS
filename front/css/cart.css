@@ -1,20 +1,30 @@
-article{
-    margin-bottom: 50px;
+
+
+
+#products-list article{
+    margin-bottom: 5px;
     display: flex;
     flex-wrap: wrap;
+    width: 95%;
+    height: auto;
     justify-content: center;
+    padding: 15px;
+}
+
+
+article img{
+    display: none;
+
 }
 
 #product-description{
-    width: 100%;
+    width: 70%;
+    margin-bottom: 10px;
 }
 #product-price{
-    width: 100%;
+    width: 30%;
+    margin-bottom: 10px;
 }
-#product-quantity{
-    width: 100%;
-}
-
 
 #delete{
     width: 20px;
@@ -28,4 +38,79 @@ article{
 
 #moins:hover, #plus:hover{
     background: #eeeeee; 
+}
+
+.quantity-selector{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+
+#products-list article #product-price .price {
+    margin-top: 0;
+    font-size: 1.2em;
+    text-align: right;
+}
+#products-list article h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#products-list article .quantity-label{
+    margin-right: 10px;
+}
+
+#alert-quantity{
+    margin: 0px 0;
+    margin-top: 10px;
+}
+
+#total-price{
+    width: auto;
+    color: var(--secondary-color);
+    font-weight: bold;
+    padding: 5px 15px 5px 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+
+#total-price-container{
+    font-size: 2em;
+}
+
+form{
+    width: auto;
+    background-color: var(--secondary-color);
+    padding: 5px 15px 5px 15px;
+}
+
+form h2{
+    margin: 10px 0;
+}
+form input{
+    margin-bottom: 10px; 
+    border: rgba(0,0,0,0.4) 1px ;
+    padding: 5px;
+}
+form label{
+    margin-bottom: 5px;
+}
+
+#send{
+    margin-top: 15px;
+    width: 100%;
+    padding:  10px 10px;
+    background-color: rgb(24, 189, 24);
+}
+
+#empty-cart-alert{
+    display: none;
+    text-align: center;
+    font-size: 1.5em;
 }
