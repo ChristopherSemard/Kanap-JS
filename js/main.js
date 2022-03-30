@@ -11,19 +11,8 @@ fetch("http://localhost:3000/api/products")
     .catch(function (error) {});
 
 
-class product {
-    constructor(id, name, imageUrl, description, altTxt, price, colors){
-    this.id = id;
-    this.name = name; 
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.altTxt = altTxt;
-    this.price = price;
-    this.colors = colors;
-    }
-}
 
-// Construction des blocks
+// Construction des blocks de produits
 function productBlocks(data){
     for (product of data){
         const productBlocksDiv = document.getElementById("products-list")

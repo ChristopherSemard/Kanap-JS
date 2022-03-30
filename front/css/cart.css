@@ -64,9 +64,14 @@ article img{
     margin-right: 10px;
 }
 
-#alert-quantity{
+.alert-quantity{
     margin: 0px 0;
     margin-top: 10px;
+    display: none;
+    font-weight: bold;
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #total-price{
@@ -87,7 +92,7 @@ article img{
 form{
     width: auto;
     background-color: var(--secondary-color);
-    padding: 5px 15px 5px 15px;
+    padding: 5px 15px 15px 15px;
 }
 
 form h2{
@@ -97,6 +102,9 @@ form input{
     margin-bottom: 10px; 
     border: rgba(0,0,0,0.4) 1px ;
     padding: 5px;
+}
+form input:invalid{
+    border: red 2px solid;
 }
 form label{
     margin-bottom: 5px;
