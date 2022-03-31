@@ -40,7 +40,7 @@ function productBlock(data){
     productForm.appendChild(cloneForm);
     let listColors = document.querySelector('.colorBlocks')
     for(color of data.colors ){
-        newColor = color.replace('/', '-');
+        newColor = color.replace('/', '_');
         let newDiv = document.createElement("div");
         newDiv.classList.add(`color`)
         newDiv.classList.add(newColor)

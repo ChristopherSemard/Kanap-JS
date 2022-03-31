@@ -45,6 +45,7 @@ document.addEventListener("change", event => {
         targetProductParent = targetProductParent.id.split('-');
         let updateProductId = targetProductParent[0];
         let updateProductColor = targetProductParent[1];
+        console.log(updateProductId);
         updateQuantity(updateProductId, updateProductColor);
     }
 })
