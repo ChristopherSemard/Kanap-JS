@@ -1,4 +1,4 @@
-// Récupérer les produits via l'API
+/** Récupérer les produits via l'API */
 fetch("http://localhost:3000/api/products")
     .then(function (response) {
     if (response.ok) {
@@ -12,27 +12,19 @@ fetch("http://localhost:3000/api/products")
 
 
 
-// Construction des blocks de produits
+/** Construction des blocks de produits */
 function productBlocks(data){
     for (product of data){
-        const productBlocksDiv = document.getElementById("products-list")
-        
-        let colorsBlocks = ""
-        for(color of product.colors ){
-            newColor = color.replace('/', '-');
-            colorsBlocks += `<div class="color ${newColor}"></div>`
-        }
+        let productsList = document.querySelector('#products-list')
+        let template = document.querySelector('#product-block')
+        let clone = document.importNode(template.content, true);
+        clone.querySelector("a").setAttribute("href",`./front/html/product.html?id=${product._id}`);
+        clone.querySelector("img").setAttribute("src", product.imageUrl);
+        clone.querySelector("img").setAttribute("alt", product.altTxt);
+        clone.querySelector("h2").textContent = product.name;
+        clone.querySelectorAll("p")[0].textContent = product.description;
+        clone.querySelectorAll("p")[1].textContent = `${product.price} €`;
 
-        productBlocksDiv.innerHTML += `
-        <a href="./front/html/product.html?id=${product._id}">
-            <article>
-                <img src="${product.imageUrl}" alt="${product.altTxt}">
-                <h2>${product.name}</h2>
-                <p>${product.description}</p>
-                <div class="colorBlocks">${colorsBlocks}</div>
-                <p class="price">${product.price} €</p>
-            </article>
-        </a>
-        `
+        productsList.appendChild(clone);
     }
 }

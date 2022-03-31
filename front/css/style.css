@@ -258,9 +258,9 @@ footer{
 .Purple{
     background-color: purple;
 }
-.BlackYellow{
+.Black-Yellow{
     background: linear-gradient(135deg, rgb(0, 0, 0) 50%, rgb(255, 208, 0) 50%);
-}.BlackRed{
+}.Black-Red{
     background: linear-gradient(135deg, rgb(0, 0, 0) 50%, rgb(255, 0, 0) 50%);
 }
 

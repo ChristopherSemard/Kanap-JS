@@ -41,6 +41,34 @@
 
     <main id="product-page">
 
+        <template id="product-block">
+            <article>
+                <img >
+                <div id="product-description">
+                    <h2></h2>
+                    <p></p>
+                    <p class="price"></p>
+                </div>
+            </article>
+        </template>
+
+        <template id="product-add-cart">
+            <form>
+                <h3>Sélectionnez la couleur</h3>
+                <div class="colorBlocks"></div>
+                <h3>Sélectionnez la quantité</h3>
+                <div id="quantity-selector">
+                    <span id="moins" onclick="decreaseCount()" >-</span>
+                    <input type="number" id="quantity" value="1">
+                    <span id="plus" onclick="increaseCount()" >+</span>
+                    <div id="alert-quantity"></div>
+                </div>
+                <input id="send" onclick="addCart(productData)" value="Ajouter au panier" readonly/>
+                <div id="add-cart"></div>
+            </form>    
+        </template>
+
+
     </main>
 
     <footer>

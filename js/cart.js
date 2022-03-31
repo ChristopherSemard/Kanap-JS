@@ -1,11 +1,11 @@
 // Affichage du panier lors du chargement de la page
 updateCart()
 
-
-// Fonction d'affichage du panier
+/** Fonction d'affichage du panier */
 function updateCart(){
     let actualCart = JSON.parse(localStorage.getItem("cart"));
-    const productListDiv = document.getElementById("products-list");
+    let productsList = document.querySelector('#products-list');
+    let template = document.querySelector('#product-block');
     let totalPrice = 0
     if (actualCart === null || actualCart.length == 0){
 
@@ -15,46 +15,45 @@ function updateCart(){
         document.getElementById('send').style.display = "none";
     }
     else{
-        productListDiv.innerHTML = ""
+        productsList.textContent = "";
         for(product of actualCart){
-            
             totalPrice = totalPrice + (parseInt(product.productPrice) * parseInt(product.productQuantity))
             let idProduct = product.productId +"-"+ product.productColors;
-            productListDiv.innerHTML += `
-            <article class="product-article">
-                <img src="${product.productImg}" alt="${product.productTxt}">
-                <div id="product-description">
-                    <h2>${product.productName}</h2>
-                    <p>${product.productColors}</p>
-                </div>
-                <div id="product-price">
-                    <p class="price">${product.productPrice} €</p>
-                </div>
-                <div id="${idProduct}" class="quantity-selector">
-                    <p class="quantity-label">Quantité : </p>
-                    <input type="number" id="quantity" class="quantity" required value="${product.productQuantity}">
-                    <span id="delete" class="delete-product"><i class="fa-solid fa-xmark"></i></span>
-                    <div class="alert-quantity"></div>
-                </div>
-            </article>`
+
+            let clone = document.importNode(template.content, true);
+            
+            clone.querySelector("img").setAttribute("src", product.productImg);
+            clone.querySelector("img").setAttribute("alt", product.productTxt);
+            clone.querySelector("h2").textContent = product.productName;
+            clone.querySelector("#product-description").children[1].textContent = product.productColors;
+            clone.querySelector(".price").textContent = `${product.productPrice} €`;
+            clone.querySelector("#quantity").value = product.productQuantity;
+            clone.querySelector(".quantity-selector").id = idProduct;
+        
+
+            productsList.appendChild(clone);
         };
-        document.getElementById("total-price-container").innerHTML = totalPrice + "€";
+        document.getElementById("total-price-container").textContent = totalPrice + "€";
     }
 }
 
-// Ecoute d'un changement de quantité
+/** Ecoute d'un changement de quantité */
 document.addEventListener("change", event => {
     let targetProduct = event.target;
     let targetProductParent = targetProduct.parentElement;
-    if (targetProduct.className.includes('quantity') )  {
+    if (targetProductParent.className.includes('quantity') )  {
         targetProductParent = targetProductParent.id.split('-');
-        let updateProductId = targetProductParent[0]
-        let updateProductColor = targetProductParent[1]
+        let updateProductId = targetProductParent[0];
+        let updateProductColor = targetProductParent[1];
         updateQuantity(updateProductId, updateProductColor);
     }
 })
 
-// Fonction pour modifier la quantité
+/** Fonction pour modifier la quantité 
+ * @constructor
+ * @param {int} updateProductId - L'ID du produit.
+ * @param {int} updateProductColor - La couleur du produit.
+*/
 function updateQuantity(updateProductId, updateProductColor){
     // Récupération du produit à modifier
     let actualCart = JSON.parse(localStorage.getItem("cart"));
@@ -65,7 +64,6 @@ function updateQuantity(updateProductId, updateProductColor){
     // Récupération du block à modifier pour l'alerte
     let indexBlock
     for(var i = 0; i < actualCart.length; i++){
-        console.log(actualCart[i])
         if (actualCart[i].productId === updateProductId && actualCart[i].productColors === updateProductColor){
             indexBlock = i
         }
@@ -73,7 +71,7 @@ function updateQuantity(updateProductId, updateProductColor){
     // Update de la nouvelle quantité dans le panier si le nombre est valide
     if(newQuantity < 1 || newQuantity >100){
         updateCart()
-        document.getElementsByClassName('alert-quantity')[indexBlock].innerHTML = "Quantité invalide !";
+        document.getElementsByClassName('alert-quantity')[indexBlock].textContent = "Quantité invalide !";
         document.getElementsByClassName('alert-quantity')[indexBlock].style.display = "block";
     }
     else{
@@ -85,28 +83,26 @@ function updateQuantity(updateProductId, updateProductColor){
     
 }
 
-
-
-
-
-// Ecoute de la suppression d'un produit
+/** Ecoute de la suppression d'un produit */
 document.addEventListener("click", event => {
     let targetProduct = event.target;
-    let targetProductParent = targetProduct.parentElement;
-    if (targetProduct.className.includes('delete-product') )  {
+    let targetProductParent = targetProduct.parentElement.parentElement;
+    if (targetProduct.className.includes('fa-solid'))  {
         targetProductParent = targetProductParent.id.split('-');
         let updateProductId = targetProductParent[0]
         let updateProductColor = targetProductParent[1]
-
         removeProduct(updateProductId, updateProductColor);
     }
 })
 
-// Fonction pour supprimer le produit
+/** Fonction pour supprimer le produit du panier 
+ * @constructor
+ * @param {int} updateProductId - L'ID du produit.
+ * @param {int} updateProductColor - La couleur du produit.
+*/
 function removeProduct(updateProductId, updateProductColor){
     let actualCart = JSON.parse(localStorage.getItem("cart"));
     for(var i = 0; i < actualCart.length; i++){
-        console.log(actualCart[i])
         if (actualCart[i].productId === updateProductId && actualCart[i].productColors === updateProductColor){
             actualCart.splice(i, 1);
             localStorage.setItem("cart", JSON.stringify(actualCart));
@@ -119,27 +115,22 @@ function removeProduct(updateProductId, updateProductColor){
     
 }
 
-
-
-
-// Ecoute de la validation du panier
+/** Ecoute de la validation du panier */
 document.getElementById("send").addEventListener("click", function(event){
     let contactObject;
     let checkValidityCart = checkValidity(contactObject);
     if(checkValidityCart == false){
         event.preventDefault();
-        console.log("Formulaire non valide");
     }
     else{
         event.preventDefault();
-        console.log("Formulaire valide");
         createOrder(checkValidityCart);
     }
 })
 
-// Check des informations du formulaire
+/** Check des informations du formulaire */
 function checkValidity(){
-   
+
     // Liste des informations
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
@@ -177,12 +168,14 @@ function checkValidity(){
         city: city.value,
         email: email.value,
     };
-    console.log(contact);
     return contact ;
 }
 
 
-// Création de la commande
+/** Création de la commande 
+ * @constructor
+ * @param {object} contact - Liste des informations de contact du formulaire.
+ */
 function createOrder(contact){
     let actualCart = JSON.parse(localStorage.getItem("cart"));
     
@@ -194,7 +187,7 @@ function createOrder(contact){
 
     // Assemblage des informations de contact et de la liste des produits
     let orderObject = {contact, products};
-    console.log(orderObject);
+
     // Envoi de la commande
     let order =  fetch("http://localhost:3000/api/products/order", {
         method: "POST",
@@ -210,12 +203,12 @@ function createOrder(contact){
         }
         })
     .then(function (data) {
-            console.log(data)
             localStorage.setItem("order", JSON.stringify(data.orderId));
 
     })
     .catch(function (error) {});
 
+    // Redirection vers confirmation
     window.location.href = "confirmation.html";
     
 

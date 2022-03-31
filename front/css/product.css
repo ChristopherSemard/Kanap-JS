@@ -124,7 +124,6 @@ form{
     display: none;
     font-weight: bold;
     color: white;
-    width: calc(100%-5px);
     background-color: green;
     text-align: center;
     margin-top: 20px;

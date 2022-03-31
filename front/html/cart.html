@@ -53,7 +53,7 @@
 
             <section id="products-list">
                 <!-- Liste des produits ajoutés en js -->
-
+                
             </section>
 
             <div id="total-price"><p>Montant total à payer :</p><span id="total-price-container"></span></div>
@@ -62,15 +62,15 @@
             <form  id="form">
                 <h2>Informations personnelles</h2>
                 <label for="firstname">Prénom</label>
-                <input type="text" name="firstname" id="firstname" required="required" placeholder="Votre prénom..." value="Christopher"/>
+                <input type="text" name="firstname" id="firstname" required="required" placeholder="Votre prénom..."/>
                 <label for="lastname">Nom</label>
-                <input type="text" name="lastname" id="lastname" required="required" placeholder="Votre nom..."  value="Semard"/>
+                <input type="text" name="lastname" id="lastname" required="required" placeholder="Votre nom..."  />
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required="required" placeholder="Votre email..."  value="aaaa@gmail.com"/>
-                <label for="text">Adresse</label>
-                <input type="text" name="address" id="address" required="required" placeholder="Votre adresse..." value="12 rue jambon"/>
-                <label for="text">Ville</label>
-                <input type="text" name="city" id="city" required="required" placeholder="Votre ville..."  value="Rouen"/>
+                <input type="email" name="email" id="email" required="required" placeholder="Votre email..." />
+                <label for="address">Adresse</label>
+                <input type="text" name="address" id="address" required="required" placeholder="Votre adresse..."/>
+                <label for="city">Ville</label>
+                <input type="text" name="city" id="city" required="required" placeholder="Votre ville..."  />
                 <button id="send" type="submit" >Valider la commande</button>
             
             </form>
@@ -98,6 +98,25 @@
             <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All Rights Reserved | Powered by <3</p>
         </div>
     </footer>
+
+    <template id="product-block">
+        <article class="product-article">
+            <img>
+            <div id="product-description">
+                <h2></h2>
+                <p></p>
+            </div>
+            <div id="product-price">
+                <p class="price"></p>
+            </div>
+            <div  class="quantity-selector">
+                <p class="quantity-label">Quantité : </p>
+                <input type="number" id="quantity" class="quantity" required >
+                <span id="delete" class="delete-product"><i class="fa-solid fa-xmark"></i></span>
+                <div class="alert-quantity"></div>
+            </div>
+        </article>
+    </template>
 
 
     <script src="../../js/cart.js"></script>

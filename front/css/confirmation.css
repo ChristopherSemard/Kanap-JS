@@ -27,6 +27,10 @@
         font-size: 1.5em;
     }
     
+.products h2{
+    margin-top: 50px;
+}
+
 }
 
 @media screen and (min-width: 992px) {
