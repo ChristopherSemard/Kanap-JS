@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,32 +14,33 @@
     <header>
         <div id="header_infos">
             <div>
-                <a href="../../index-en.html"><img id="lang" src="../images/flags/en.png" alt="Cliquer pour passer le site en anglais"></a>
+                <a href="../../index.html"><img id="lang" src="../images/flags/fr.webp" alt="Click to go to french version of the website"></a>
             </div>
             <div>
-                <img src="../images/icons/phone.svg" alt="Icône de téléphone">
+                <img src="../images/icons/phone.svg" alt="Phone icon">
                 <p>01 23 45 67 89</p>
             </div>
             <div>
-                <img src="../images/icons/mail.svg" alt="">
+                <img src="../images/icons/mail.svg" alt="Mail icon">
                 <p>support@name.com</p>
             </div>
             <div>
-                <img src="../images/icons/adress.svg" alt="">
+                <img src="../images/icons/adress.svg" alt="Address icon">
                 <p></p>10 quai de la charente, 75019 Paris 19</p>
             </div>
         </div>
         <div id="header_bar">
             <div id="logo">
-                <img src="../images/logo-transparent.png" alt="Logo Kanap">
+                <img src="../images/logo-transparent.png" alt="Kanap logo">
             </div>
             <nav>
                 <ul>
-                    <a href="../../index.html"><li>Accueil</li></a>
-                    <a href="./cart.html"><li>Panier</li></a>
+                    <a href="../../index.html"><li>Home</li></a>
+                    <a href="./cart-en.html"><li>Cart</li></a>
                 </ul>
             </nav>
         </div>
+        <img id="banniere" src="../images/banniere.png" alt="Banner">
     </header>
 
     <main id="product-page">
@@ -57,16 +58,16 @@
 
         <template id="product-add-cart">
             <form>
-                <h3>Sélectionnez la couleur</h3>
+                <h3>Select a color</h3>
                 <div class="colorBlocks"></div>
-                <h3>Sélectionnez la quantité</h3>
+                <h3>Select a quantity</h3>
                 <div id="quantity-selector">
                     <span id="moins" onclick="decreaseCount()" >-</span>
                     <input type="number" id="quantity" value="1">
                     <span id="plus" onclick="increaseCount()" >+</span>
                     <div id="alert-quantity"></div>
                 </div>
-                <input id="send" onclick="addCart(productData)" value="Ajouter au panier" readonly/>
+                <input id="send" onclick="addCart(productData)" value="Add to cart" readonly/>
                 <div id="add-cart"></div>
             </form>    
         </template>
@@ -83,7 +84,7 @@
                 <p>10 quai de la charente<br>75019 Paris 19</p>
             </div>
             <div>
-                <p>Téléphone : 01 23 45 67 89</p>
+                <p>Phone : 01 23 45 67 89</p>
             </div>
             <div>
                 <p>Email : support@name.com</p>

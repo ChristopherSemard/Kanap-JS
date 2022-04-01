@@ -1,10 +1,9 @@
 let url = new URL(document.location.href); 
 let productId = url.searchParams.get('id')
 let productData
+let lang = document.querySelector('html').lang
 
-
-
-/** Récupérer le produit via l'API */
+/** Retrieve the product via the API */
 fetch(`http://localhost:3000/api/products/${productId}`)
     .then(function (response) {
     if (response.ok) {
@@ -18,7 +17,7 @@ fetch(`http://localhost:3000/api/products/${productId}`)
     .catch(function (error) {});
 
 
-/** Construction du contenu de la page produit*/
+/** Construction of the content of the product page */
 function productBlock(data){
 
     // Construction du bloc produit
@@ -33,7 +32,7 @@ function productBlock(data){
 
     productPage.appendChild(clone);
 
-    // Construction du formulaire d'ajout au panier
+    // Construction of the form for adding the product in the cart
     let productForm = document.querySelector('#product-page')
     let templateForm = document.querySelector('#product-add-cart')
     let cloneForm = document.importNode(templateForm.content, true);
@@ -52,7 +51,7 @@ function productBlock(data){
 
 }
 
-/** Ecoute du choix de couleur */
+/** Listening the choice of colors */
 document.addEventListener("click", event => {
     const target = event.target;
     if (target.className.includes('color') && !target.className.includes('colorBlocks'))  {
@@ -64,7 +63,7 @@ document.addEventListener("click", event => {
     }
 })
 
-/** Fonction pour réduire la quantité */
+/** Function for reducing the quantity */
 function decreaseCount(){
     const quantityValue = document.getElementById("quantity")
     if(quantityValue.value == 1){
@@ -75,7 +74,7 @@ function decreaseCount(){
     }
 }
 
-/** Fonction pour augmenter la quantité */
+/** Function for increasing the quantity */
 function increaseCount(){
     const quantityValue = document.getElementById("quantity")
     if( quantityValue.value < 101){
@@ -86,30 +85,41 @@ function increaseCount(){
     }
 }
 
-/** Fonction pour ajouter le produit au panier */
+/** Function for adding the product in the cart */
 function addCart(data){
     let productQuantity = document.getElementById('quantity').value;
     document.getElementById('alert-color').textContent = ""
     document.getElementById('alert-quantity').textContent = ""
-    // Vérification si une couleur est selectionnée
+    // Verify if a color is selected
     if(document.getElementsByClassName('active').length == 0 ){
-        document.getElementById('alert-color').textContent = "Vous n'avez pas selectionné de couleur !";
+        
+        if (lang == "fr"){
+            document.getElementById('alert-color').textContent = "Vous n'avez pas selectionné de couleur !";
+        }
+        else if (lang == "en"){
+            document.getElementById('alert-color').textContent = "You didn't select the color !";
+        }
         document.getElementById('alert-color').style.display = "block";
         document.getElementById('alert-quantity').style.display = "none";
         document.getElementById('add-cart').style.display = "none";
     }
-    // Vérification si la quantité est valide
+    // Verify if the quantity selected is valid
     else if(productQuantity < 1 || productQuantity >100){
-        document.getElementById('alert-quantity').textContent = "La quantité selectionnée n'est pas valide !";
+        if (lang == "fr"){
+            document.getElementById('alert-quantity').textContent = "Vous n'avez pas selectionné de couleur !";
+        }
+        else if (lang == "en"){
+            document.getElementById('alert-quantity').textContent = "The quantity value is not valid !";
+        }
         document.getElementById('alert-quantity').style.display = "block";
         document.getElementById('alert-color').style.display = "none";
         document.getElementById('add-cart').style.display = "none";
     }
-    // Ajout du produit au panier
+    // Add the product in the cart
     else{
         let productColor = document.getElementsByClassName('active')[0].classList[1];
 
-        // Création de l'objet produit
+        // Create the product object
         let newProduct = {
             productId,
             productName : data.name,
@@ -121,9 +131,9 @@ function addCart(data){
             productQuantity : productQuantity
         };
 
-        // Récupération du panier
+        // Retrieve the actual cart
         actualCart = localStorage.getItem('cart');
-        // Si il n'existe pas on le crée
+        // If it doesn't exist we create it
         if(actualCart === null){
             actualCart = [];
             localStorage.setItem("cart", JSON.stringify(actualCart));
@@ -131,11 +141,11 @@ function addCart(data){
         actualCart = localStorage.getItem('cart');
         actualCart = JSON.parse(actualCart);
 
-        // Check si le produit existe déjà
+        // Check if the product is already in the cart
         const alreadyIn = actualCart.find(
             obj => obj.productId === newProduct.productId && obj.productColors === newProduct.productColors);
         
-        // Si le produit existe déjà on update la quantité
+        // If the product already exists we only update the quantity
         if (alreadyIn){
             let newQuantity = parseInt(newProduct.productQuantity) + parseInt(alreadyIn.productQuantity);
             alreadyIn.productQuantity = newQuantity;
@@ -145,12 +155,17 @@ function addCart(data){
             document.getElementById('alert-quantity').style.display = "none";
         }
 
-        // Si le produit n'existe pas déjà on l'ajoute au panier existant
+        // If the product doesn't exist we add it
         else {
             actualCart.push(newProduct);
             localStorage.setItem("cart", JSON.stringify(actualCart));
 
-            document.getElementById('add-cart').textContent = "Vos produits ont bien été ajoutés au panier !";
+            if (lang == "fr"){
+                document.getElementById('add-cart').textContent = "Vos produits ont bien été ajoutés au panier !";
+            }
+            else if (lang == "en"){
+                document.getElementById('add-cart').textContent = "Your products have been added to your cart !";
+            }
             document.getElementById('add-cart').style.display = "block";
             document.getElementById('alert-color').style.display = "none";
             document.getElementById('alert-quantity').style.display = "none";

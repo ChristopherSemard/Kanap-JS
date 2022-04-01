@@ -1,7 +1,9 @@
-// Affichage du panier lors du chargement de la page
+let lang = document.querySelector('html').lang
+
+// Display the cart when we load the page
 updateCart()
 
-/** Fonction d'affichage du panier */
+/** Function for displaying the cart */
 function updateCart(){
     let actualCart = JSON.parse(localStorage.getItem("cart"));
     let productsList = document.querySelector('#products-list');
@@ -37,7 +39,7 @@ function updateCart(){
     }
 }
 
-/** Ecoute d'un changement de quantité */
+/** Listening a quantity change */
 document.addEventListener("change", event => {
     let targetProduct = event.target;
     let targetProductParent = targetProduct.parentElement;
@@ -50,29 +52,34 @@ document.addEventListener("change", event => {
     }
 })
 
-/** Fonction pour modifier la quantité 
+/** Function for updating the quantity
  * @constructor
- * @param {int} updateProductId - L'ID du produit.
- * @param {int} updateProductColor - La couleur du produit.
+ * @param {int} updateProductId - The product ID.
+ * @param {int} updateProductColor - The product color
 */
 function updateQuantity(updateProductId, updateProductColor){
-    // Récupération du produit à modifier
+    // Retrieve the product to update
     let actualCart = JSON.parse(localStorage.getItem("cart"));
     let product = actualCart.find(
         obj => obj.productId === updateProductId && obj.productColors === updateProductColor);
     let idProduct = product.productId +"-"+ product.productColors;
     let newQuantity = document.getElementById(idProduct).children[1].value;
-    // Récupération du block à modifier pour l'alerte
+    // Retrieve the alert block to modify
     let indexBlock
     for(var i = 0; i < actualCart.length; i++){
         if (actualCart[i].productId === updateProductId && actualCart[i].productColors === updateProductColor){
             indexBlock = i
         }
     }
-    // Update de la nouvelle quantité dans le panier si le nombre est valide
+    // Update the new quantity in the cart if the new quantity is valid
     if(newQuantity < 1 || newQuantity >100){
         updateCart()
-        document.getElementsByClassName('alert-quantity')[indexBlock].textContent = "Quantité invalide !";
+        if (lang == "fr"){
+            document.getElementsByClassName('alert-quantity')[indexBlock].textContent = "Quantité invalide !";
+        }
+        else if (lang == "en"){
+            document.getElementsByClassName('alert-quantity')[indexBlock].textContent = "Invalid quantity !";
+        }
         document.getElementsByClassName('alert-quantity')[indexBlock].style.display = "block";
     }
     else{
@@ -84,7 +91,7 @@ function updateQuantity(updateProductId, updateProductColor){
     
 }
 
-/** Ecoute de la suppression d'un produit */
+/** Listening delete the product */
 document.addEventListener("click", event => {
     let targetProduct = event.target;
     let targetProductParent = targetProduct.parentElement.parentElement;
@@ -96,10 +103,10 @@ document.addEventListener("click", event => {
     }
 })
 
-/** Fonction pour supprimer le produit du panier 
+/** Function for delete the product from the cart
  * @constructor
- * @param {int} updateProductId - L'ID du produit.
- * @param {int} updateProductColor - La couleur du produit.
+ * @param {int} updateProductId - The product ID.
+ * @param {int} updateProductColor - The product color.
 */
 function removeProduct(updateProductId, updateProductColor){
     let actualCart = JSON.parse(localStorage.getItem("cart"));
@@ -116,7 +123,7 @@ function removeProduct(updateProductId, updateProductColor){
     
 }
 
-/** Ecoute de la validation du panier */
+/** Listening the validation of the cart*/
 document.getElementById("send").addEventListener("click", function(event){
     let contactObject;
     let checkValidityCart = checkValidity(contactObject);
@@ -129,10 +136,10 @@ document.getElementById("send").addEventListener("click", function(event){
     }
 })
 
-/** Check des informations du formulaire */
+/** Check the informations of the form */
 function checkValidity(){
 
-    // Liste des informations
+    // List of informations
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const email = document.getElementById("email");
@@ -140,7 +147,7 @@ function checkValidity(){
     const city = document.getElementById("city");
     let inputs = [firstname, lastname, email, address, city]
 
-    // Liste des regex
+    // List of regex
     const firstNameRGEX = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,100}$/u;
     const lastNameRGEX = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,100}$/u;
     const emailRGEX = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
@@ -148,12 +155,18 @@ function checkValidity(){
     const cityRGEX = /^[a-zA-Z',.\s-]{1,100}$/;
     let regex = [firstNameRGEX, lastNameRGEX, emailRGEX, addressRGEX, cityRGEX]
 
-    // Check si les infos sont valides
+    // Check if the informations are valid
     let validity = 0
     for(var i = 0; i < inputs.length; i++){
         inputs[i].setCustomValidity('');
         if(!regex[i].test(inputs[i].value)) {
-            inputs[i].setCustomValidity('Invalide');
+            
+            if (lang == "fr"){
+                inputs[i].setCustomValidity('Invalide');
+            }
+            else if (lang == "en"){
+                inputs[i].setCustomValidity('Invalid');
+            }
             validity += 1
         }
     }
@@ -161,7 +174,7 @@ function checkValidity(){
         return false
     }
 
-    // Création de l'objet contact
+    // Creation of the contact object
     let contact = {
         firstName: firstname.value,
         lastName: lastname.value,
@@ -173,23 +186,23 @@ function checkValidity(){
 }
 
 
-/** Création de la commande 
+/** Function for creating the order
  * @constructor
- * @param {object} contact - Liste des informations de contact du formulaire.
+ * @param {object} contact - List of contact informations
  */
 function createOrder(contact){
     let actualCart = JSON.parse(localStorage.getItem("cart"));
     
-    // Assemblage de la liste des produits
+    // Assembly the list of products
     let products = [];
     actualCart.forEach((orderProduct) =>{
         products.push(orderProduct.productId);
     });
 
-    // Assemblage des informations de contact et de la liste des produits
+    // Assembly of contact informations and products list
     let orderObject = {contact, products};
 
-    // Envoi de la commande
+    // Send the order
     let order =  fetch("http://localhost:3000/api/products/order", {
         method: "POST",
         body: JSON.stringify(orderObject),
@@ -209,8 +222,14 @@ function createOrder(contact){
     })
     .catch(function (error) {});
 
-    // Redirection vers confirmation
-    window.location.href = "confirmation.html";
+    // Redirect to the confirmation
+    
+    if (lang == "fr"){
+        window.location.href = "confirmation.html";
+    }
+    else if (lang == "en"){
+        window.location.href = "confirmation-en.html";
+    }
     
 
 

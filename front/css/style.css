@@ -34,6 +34,16 @@ header{
     padding: 0 20px;;
 }
 
+#lang{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#lang:hover{
+    transform: scale(1.05) ;
+    cursor: pointer;
+}
+
 #header_infos div{
     width: 100%;
     display: flex;
@@ -258,9 +268,9 @@ footer{
 .Purple{
     background-color: purple;
 }
-.Black-Yellow{
+.Black_Yellow{
     background: linear-gradient(135deg, rgb(0, 0, 0) 50%, rgb(255, 208, 0) 50%);
-}.Black-Red{
+}.Black_Red{
     background: linear-gradient(135deg, rgb(0, 0, 0) 50%, rgb(255, 0, 0) 50%);
 }
 

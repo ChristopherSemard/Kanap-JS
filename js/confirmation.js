@@ -1,11 +1,11 @@
-// Récupération du conteneur où insérer l'id
+// Retrieve of the container where we insert the order ID
 let orderId = document.getElementById("orderId");
 
-// Récupération de l'id de la commande
+// Retrieve the order ID
 let order = JSON.parse(localStorage.getItem("order"));
 
-// Récupération de l'id de la commande
+// Insert the order ID
 orderId.textContent = `${order}`;
 
-// Effacement du panier et de la commande
+// Delete the cart and the order
 localStorage.clear();
