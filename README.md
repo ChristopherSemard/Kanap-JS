@@ -1,6 +1,6 @@
 # Kanap-JS
 
-Projet de site d'e-commerce avec gestion du panier et d'une API.
+Projet de site d'e-commerce avec gestion du panier et d'une API. Le back est déjà fourni de base par le projet.
 
 ## Pré-requis
 
